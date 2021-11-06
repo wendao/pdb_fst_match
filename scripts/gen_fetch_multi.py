@@ -9,13 +9,16 @@ for l in lines:
   chains[pro].append(chn)
 
 os.makedirs("mmcif", exist_ok=True)
+
 print("set fetch_path, mmcif")
 for pro in chains.keys():
   print( "fetch " + pro + ", async=0" )
   print( "remove not (alt ''+A) " )
   print( "alter all, alt=''" )
+  os.makedirs("fst/%s/" % pro[1:3], exist_ok=True)
   os.makedirs("raw/%s/" % pro[1:3], exist_ok=True)
   for ch in chains[pro]:
+    print( "save fst/%s/%s.fasta, chain %s" % (pro[1:3], pro+ch, ch) )
     print( "save raw/%s/%s.pdb, chain %s" % (pro[1:3], pro+ch, ch) )
   print( "delete all" )
 print("quit")
