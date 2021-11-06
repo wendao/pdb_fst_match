@@ -8,7 +8,8 @@ for l in lines:
   chn = l.strip()[5:]
   chains[pro].append(chn)
 
-print("set fetch_path, /home/wendao/mmcif")
+os.makedirs("mmcif", exist_ok=True)
+print("set fetch_path, mmcif")
 for pro in chains.keys():
   print( "fetch " + pro + ", async=0" )
   print( "remove not (alt ''+A) " )
@@ -17,4 +18,4 @@ for pro in chains.keys():
   for ch in chains[pro]:
     print( "save raw/%s/%s.pdb, chain %s" % (pro[1:3], pro+ch, ch) )
   print( "delete all" )
-  print()
+print("quit")
