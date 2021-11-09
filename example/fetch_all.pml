@@ -22,6 +22,8 @@ remove not (alt ''+A)
 alter all, alt=''
 save fst/HQ/1HQMD.fasta, chain D
 save raw/HQ/1HQMD.pdb, chain D
+save fst/HQ/1HQMD.fasta, chain D
+save raw/HQ/1HQMD.pdb, chain D
 delete all
 fetch 4QRY, async=0
 remove not (alt ''+A) 
@@ -64,5 +66,23 @@ remove not (alt ''+A)
 alter all, alt=''
 save fst/91/1914A.fasta, chain A
 save raw/91/1914A.pdb, chain A
+delete all
+fetch 1A7L, async=0
+remove not (alt ''+A) 
+alter all, alt=''
+save fst/A7/1A7LA.fasta, chain A
+save raw/A7/1A7LA.pdb, chain A
+delete all
+fetch 7JGM, async=0
+remove not (alt ''+A) 
+alter all, alt=''
+save fst/JG/7JGMa.fasta, chain a
+save raw/JG/7JGMa.pdb, chain a
+delete all
+fetch 6F5G, async=0
+remove not (alt ''+A) 
+alter all, alt=''
+save fst/F5/6F5GA.fasta, chain A
+save raw/F5/6F5GA.pdb, chain A
 delete all
 quit
