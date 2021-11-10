@@ -7,10 +7,12 @@ For chain ID for all single chain, download https://cdn.rcsb.org/resources/seque
 For fasta sequence for each chain, download https://ftp.wwpdb.org/pub/pdb/derived_data/pdb_seqres.txt.gz
 
     cd examples
+    #generate pymol script
     python ../scripts/gen_fetch_multi.py sample.list > fetch_all.pml
+    #fetch all cif and pdb
     pymol -cp fetch_all.pml
-
-    grep -A 1 7ll9_C ../database/pdb_seqres.txt
+    #extract fasta
+    ../scripts/apply_each_chain.sh sample.list
 
 Then clean the pdb, rename and renumber
 

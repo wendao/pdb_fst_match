@@ -23,7 +23,7 @@ for pro in chains.keys():
   #pdb
   os.makedirs("raw/%s/" % pro[1:3], exist_ok=True)
   for ch in chains[pro]:
-    print( "save fst/%s/%s.fasta, chain %s" % (pro[1:3], pro+ch, ch) )
+    #print( "save fst/%s/%s.fasta, chain %s" % (pro[1:3], pro+ch, ch) )
     print( "save raw/%s/%s.pdb, chain %s" % (pro[1:3], pro+ch, ch) )
   print( "delete all" )
 print("quit")
