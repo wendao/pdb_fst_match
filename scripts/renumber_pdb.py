@@ -8,20 +8,23 @@ def initialize_options() :
     parser.add_option( "-l", "--align_file", dest="aln", type="string", help="", default="" )
     return parser
 
-def remap_resnum_for_line( line, mapping ):
-    if line[0:4] != "ATOM": return line
-    chain = line[21]
-    if chain not in mapping: return line
-    resstring = line[22:27]
-    resnum, lastresstring = mapping[ chain ]
-    if lastresstring == "" or resstring != lastresstring :
-        if lastresstring != "" : resnum += 1
-        mapping[ chain ] = (resnum, resstring )
-    newresstring = str(resnum) + " "
-    if len(newresstring) == 2: newresstring = "   " + newresstring
-    elif len(newresstring) == 3: newresstring = "  " + newresstring
-    elif len(newresstring) == 4: newresstring = " " + newresstring
-    return line[0:22] + newresstring + line[27:]
+def remap_resnum_for_line( lines, mapping ):
+    newlines = []
+    last_resstr = ""
+    resi = 0
+    for line in lines:
+        left = line[:22]
+        right = line[27:]
+        resstr = line[22:27]
+        if resstr == last_resstr:
+            newstr = "%4d " % mapping[resi]
+        else:
+            last_resstr = resstr
+            resi += 1
+            newstr = "%4d " % mapping[resi]
+        #print("|"+resstr+"|"+newstr+"|")
+        newlines.append(left+newstr+right)
+    return newlines
 
 if __name__ == "__main__":
 
@@ -29,10 +32,31 @@ if __name__ == "__main__":
     (options, args) = parser.parse_args()
 
     pdblines = open( options.pdbname ).readlines()
+
     mapping = {}
-    newlines = []
-    for line in pdblines:
-        newlines.append( remap_resnum_for_line( line, mapping ))
+    #the fasta seq starts from 1, and pdb match with it
+    seqlines = open( options.aln ).readlines()
+    pdbseq = seqlines[0].strip()
+    fstseq = seqlines[1].strip()
+    nSeq = len(fstseq)
+    assert( len(pdbseq) == nSeq )
+    p_pdb = 0
+    p_fst = 0
+    fst0 = -1
+    for i in range(nSeq):
+        if fst0 < 0 and fstseq[i] != "-": fst0 = i 
+        if fstseq[i] != "-": p_fst = p_fst + 1
+        if pdbseq[i] != "-": 
+            p_pdb = p_pdb + 1
+            mapping[p_pdb] = p_fst
+        #print(p_pdb, pdbseq[i], p_fst, fstseq[i])
+    #gap in fasta
+    if fst0 > 0: 
+        for i in range(fst0, 0, -1):
+            mapping[i] = i - fst0
+    #print(mapping)
+    
+    newlines = remap_resnum_for_line( pdblines, mapping )
     if options.output == "":
         for line in newlines:
             print(line, end='')

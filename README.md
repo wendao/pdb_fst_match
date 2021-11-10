@@ -29,4 +29,4 @@ clean pdb: remove col[27] not empty
 rename: MSE, PTR, SEP, TPO ...
 ../../../bin/pdb2fasta 2F16D_clean.pdb > 2F16D.fst
 python ../scripts/match_pdb_fasta.py raw/F1/2F16D.fst fst/F1/2F16_D.fasta > raw/F1/2F16D.aln
-python ../scripts/renumber_pdb.py -p raw/F1/2F16D_clean.pdb -l raw/F1/2F16D.aln
+python ../scripts/renumber_pdb.py -p raw/F1/2F16D_clean.pdb -l raw/F1/2F16D.aln -o tmp.pdb
