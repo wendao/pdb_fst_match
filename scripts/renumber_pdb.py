@@ -35,6 +35,7 @@ if __name__ == "__main__":
         newlines.append( remap_resnum_for_line( line, mapping ))
     if options.output == "":
         for line in newlines:
-            print(line)
+            print(line, end='')
     else:
         open( options.output, "w").writelines(newlines)
+

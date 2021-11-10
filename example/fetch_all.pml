@@ -70,4 +70,9 @@ remove not (alt ''+A)
 alter all, alt=''
 save raw/F5/6F5GA.pdb, chain A
 delete all
+fetch 2F16, async=0
+remove not (alt ''+A) 
+alter all, alt=''
+save raw/F1/2F16D.pdb, chain D
+delete all
 quit
