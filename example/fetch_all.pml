@@ -75,4 +75,14 @@ remove not (alt ''+A)
 alter all, alt=''
 save raw/F1/2F16D.pdb, chain D
 delete all
+fetch 3BDM, async=0
+remove not (alt ''+A) 
+alter all, alt=''
+save raw/BD/3BDMD.pdb, chain D
+delete all
+fetch 5T04, async=0
+remove not (alt ''+A) 
+alter all, alt=''
+save raw/T0/5T04A.pdb, chain A
+delete all
 quit
