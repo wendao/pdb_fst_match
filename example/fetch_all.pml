@@ -18,7 +18,6 @@ fetch 1HQM, async=0
 remove not (alt ''+A) 
 alter all, alt=''
 save raw/HQ/1HQMD.pdb, chain D
-save raw/HQ/1HQMD.pdb, chain D
 delete all
 fetch 4QRY, async=0
 remove not (alt ''+A) 
@@ -84,5 +83,10 @@ fetch 5T04, async=0
 remove not (alt ''+A) 
 alter all, alt=''
 save raw/T0/5T04A.pdb, chain A
+delete all
+fetch 109L, async=0
+remove not (alt ''+A) 
+alter all, alt=''
+save raw/09/109LA.pdb, chain A
 delete all
 quit
