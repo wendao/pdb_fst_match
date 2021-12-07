@@ -89,4 +89,14 @@ remove not (alt ''+A)
 alter all, alt=''
 save raw/09/109LA.pdb, chain A
 delete all
+fetch 4XA9, async=0
+remove not (alt ''+A) 
+alter all, alt=''
+save raw/XA/4XA9G.pdb, chain G
+delete all
+fetch 6HMY, async=0
+remove not (alt ''+A) 
+alter all, alt=''
+save raw/HM/6HMYD.pdb, chain D
+delete all
 quit
