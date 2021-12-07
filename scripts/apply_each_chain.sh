@@ -8,8 +8,14 @@ do
     grep -A 1 ${fst_name} ../../../database/pdb_seqres.txt > ${p}.fasta
   cd ../..
   cd raw/${folder}/
-    #clean
-    #../../../bin/pdb2fasta ${pdb_name}_clean.pdb > ${pdb_name}.pdb.fst
+    #clean TODO
+    #grep ^ATOM ${pdb_name}.pdb > ${pdb_name}_clean.pdb
+    python ../../../scripts/idealize_pdb.py ${pdb_name}.pdb > ${pdb_name}_clean.pdb
+    #pdb seq
+    ../../../bin/pdb2fasta ${pdb_name}_clean.pdb > ${pdb_name}.pdb.fst
     #renumber
+    python ../../../scripts/match_pdb_fasta.py ${pdb_name}.pdb.fst ../../fst/${folder}/${p}.fasta > ${p}.aln
+    #renumber
+    python ../../../scripts/renumber_pdb.py -p ${pdb_name}_clean.pdb -l ${p}.aln -o ${pdb_name}_renumber.pdb
   cd ../..
 done
