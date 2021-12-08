@@ -14,8 +14,10 @@ os.makedirs("mmcif", exist_ok=True)
 print("set fetch_path, mmcif")
 for pro in chains.keys():
   print( "fetch " + pro + ", async=0" )
-  print( "remove not (alt ''+A) " )
-  print( "alter all, alt=''" )
+
+  #print( "remove not (alt ''+A)" )
+  #print( "alter all, alt=''" )
+
   #https://files.rcsb.org/download/6F5G.[pdb/cif]
   #https://www.rcsb.org/fasta/entry/7ANQ/display
   #fasta
