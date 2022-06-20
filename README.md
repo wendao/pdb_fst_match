@@ -26,3 +26,6 @@ Then clean the pdb, rename and renumber
 
 ## TODO
 clean pdb: remove col[27] not empty
+
+output pdb.fst after rename (idealize.py)
+
